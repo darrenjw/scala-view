@@ -6,6 +6,8 @@ https://en.wikipedia.org/wiki/Langton%27s_ant
  */
 
 import java.awt.image.BufferedImage
+import scalaview.SwingImageViewer
+import scalaview.Utils._
 
 case class Img(size: Int, data: Vector[Boolean]) {
 
