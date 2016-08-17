@@ -1,6 +1,6 @@
 # scala-view
 
-Tiny Scala package for viewing a Stream of Swing BufferedImages in a JFrame
+Tiny Scala package for animating on-screen a Stream of Swing BufferedImages in a JFrame
 
 
 ## Building and using the package (with sbt)
