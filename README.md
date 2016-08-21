@@ -9,6 +9,6 @@ The binary package is not yet published to sonatype or similar. So, to use, down
 
 ## Using the package in your code
 
-The idea is that you create a Stream of BufferedImages for your application and then visualise it by calling `scalaview.SwingImageViewer(sbi)` where `sbi` has type `Stream[BufferedImage]`. An example showing how to use this to visualise Langton's Ant is included in the `examples` directory. Further details can be found in the scaladoc (which can be built with `sbt doc`). Note that it is usually better to use the constructor(s) in the companion object for the `SwingImageViewer` rather than the default class constructor.
+The idea is that you create a Stream of BufferedImages for your application and then visualise it by calling `scalaview.SwingImageViewer(sbi)` where `sbi` has type `Stream[BufferedImage]`. Further details can be found in the scaladoc (which can be built with `sbt doc`). Note that it is usually better to use the constructor(s) in the companion object for the `SwingImageViewer` rather than the default class constructor.
 
-
+Examples of use can be found in the separate repo [scala-view-examples](https://github.com/darrenjw/scala-view-examples).
