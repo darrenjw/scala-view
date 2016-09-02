@@ -28,8 +28,9 @@ object Utils {
     *  function is completely agnostic to the type of stream to be thinned.
     */
   def thinStream[T](s: Stream[T], th: Int): Stream[T] = {
-    val ss = s.drop(th)
-    ss.head #:: thinStream(ss, th)
+    val ss = s.drop(th-1)
+    if (ss.isEmpty) Stream.empty else
+      ss.head #:: thinStream(ss.tail, th)
   }
 
   /**
