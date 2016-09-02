@@ -16,13 +16,13 @@ import scala.util.Random
 import scala.swing.event.{ButtonClicked, WindowClosing}
 
 /**
-  * Class having the side-effect of rendering a Stream of BufferedImages in a JFrame on-screen.
-  * Better to use the constructor(s) in the companion object.
-  * 
-  * @constructor Render the stream of images on-screen
-  * @param is Stream of BufferedImages to be animated on-screen
-  * @param timerDelay Delay, in milliseconds, between rendering of frames in the stream
-  */
+ * Class having the side-effect of rendering a Stream of BufferedImages in a JFrame on-screen.
+ * Better to use the constructor(s) in the companion object.
+ *
+ * @constructor Render the stream of images on-screen
+ * @param is Stream of BufferedImages to be animated on-screen
+ * @param timerDelay Delay, in milliseconds, between rendering of frames in the stream
+ */
 class SwingImageViewer(var is: Stream[BufferedImage], timerDelay: Int) {
 
   def top = new MainFrame {
@@ -40,9 +40,11 @@ class SwingImageViewer(var is: Stream[BufferedImage], timerDelay: Int) {
     listenTo(start)
     listenTo(stop)
     val timer = new javax.swing.Timer(timerDelay, Swing.ActionListener(e => {
-      panel.bi = is.head
-      is = is.tail
-      panel.repaint()
+      if (!is.isEmpty) {
+        panel.bi = is.head
+        is = is.tail
+        panel.repaint()
+      }
     }))
     reactions += {
       case ButtonClicked(b) => {
@@ -63,17 +65,28 @@ class SwingImageViewer(var is: Stream[BufferedImage], timerDelay: Int) {
 object SwingImageViewer {
 
   /**
-    * Constructor to be used for rendering image streams
-    * 
-    * @constructor Render the provided image stream on-screen
-    * @param is Sream of images to be rendered on-screen
-    * @param timerDelay Delay, in milliseconds, between frames of the image to be rendered on screen. Use the default for streams to be rendered as soon as each image is computed.
-    * @return In principle this returns an object, but in practice it is called purely for the side-effect of on-screen rendering.
-    */
+   * Constructor to be used for rendering image streams
+   *
+   * @constructor Render the provided image stream on-screen
+   * @param is Stream of images to be rendered on-screen
+   * @param timerDelay Delay, in milliseconds, between frames of the image to be rendered on screen. Use the default for streams to be rendered as soon as each image is computed.
+   * @return In principle this returns an object, but in practice it is called purely for the side-effect of on-screen rendering.
+   */
   def apply(is: Stream[BufferedImage], timerDelay: Int = 1): SwingImageViewer = {
     val siv = new SwingImageViewer(is, timerDelay)
     siv.top.visible = true
     siv
+  }
+
+  /**
+   * Constructor to be used for rendering a single image
+   *
+   * @constructor Render the provided image on-screen
+   * @param im is the image to be rendered
+   * @return In principle this returns an object, but in practice it is called purely for the side-effect of on-screen rendering.
+   */
+  def apply(im: BufferedImage): SwingImageViewer = {
+    apply(Stream(im))
   }
 
 }
