@@ -71,6 +71,7 @@ object SwingImageViewer {
    * @constructor Render the provided image stream on-screen
    * @param is Stream of images to be rendered on-screen
    * @param timerDelay Delay, in milliseconds, between frames of the image to be rendered on screen. Use the default for streams to be rendered as soon as each image is computed.
+    * @param autoStart Auto-start the animation without requiring a click on the Start button.
    * @return In principle this returns an object, but in practice it is called purely for the side-effect of on-screen rendering.
    */
   def apply(is: Stream[BufferedImage], timerDelay: Int = 1, autoStart: Boolean = false): SwingImageViewer = {
