@@ -23,7 +23,7 @@ import scala.swing.event.{ButtonClicked, WindowClosing}
  * @param is Stream of BufferedImages to be animated on-screen
  * @param timerDelay Delay, in milliseconds, between rendering of frames in the stream
  */
-class SwingImageViewer(var is: Stream[BufferedImage], timerDelay: Int) {
+class SwingImageViewer(var is: Stream[BufferedImage], timerDelay: Int, autoStart: Boolean) {
 
   def top = new MainFrame {
     title = "Swing Image Viewer"
@@ -58,6 +58,7 @@ class SwingImageViewer(var is: Stream[BufferedImage], timerDelay: Int) {
         sys.exit()
       }
     }
+    if (autoStart) timer.start()
   }
 
 }
@@ -72,8 +73,8 @@ object SwingImageViewer {
    * @param timerDelay Delay, in milliseconds, between frames of the image to be rendered on screen. Use the default for streams to be rendered as soon as each image is computed.
    * @return In principle this returns an object, but in practice it is called purely for the side-effect of on-screen rendering.
    */
-  def apply(is: Stream[BufferedImage], timerDelay: Int = 1): SwingImageViewer = {
-    val siv = new SwingImageViewer(is, timerDelay)
+  def apply(is: Stream[BufferedImage], timerDelay: Int = 1, autoStart: Boolean = false): SwingImageViewer = {
+    val siv = new SwingImageViewer(is, timerDelay, autoStart)
     siv.top.visible = true
     siv
   }
@@ -86,7 +87,7 @@ object SwingImageViewer {
    * @return In principle this returns an object, but in practice it is called purely for the side-effect of on-screen rendering.
    */
   def apply(im: BufferedImage): SwingImageViewer = {
-    apply(Stream(im))
+    apply(Stream(im),autoStart=true)
   }
 
 }
