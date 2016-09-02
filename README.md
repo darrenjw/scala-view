@@ -1,6 +1,6 @@
 # scala-view
 
-Small Scala library for animating on-screen a Stream of Swing BufferedImages in a JFrame
+Small Scala library for animating on-screen a Stream of AWT BufferedImages in a Swing JFrame
 
 
 ## Building and using the package (with sbt)
