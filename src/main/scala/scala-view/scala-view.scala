@@ -23,16 +23,20 @@ import scala.swing.event.{ButtonClicked, WindowClosing}
  * @param is Stream of BufferedImages to be animated on-screen
  * @param timerDelay Delay, in milliseconds, between rendering of frames in the stream
  */
-class SwingImageViewer(var is: Stream[BufferedImage], timerDelay: Int, autoStart: Boolean, saveFrames: Boolean) {
+class SwingImageViewer(var is: Stream[BufferedImage], timerDelay: Int, autoStart: Boolean, var saveFrames: Boolean) {
 
   def top = new MainFrame {
     title = "Swing Image Viewer"
     val start = new Button { text = "Start" }
     val stop = new Button { text = "Stop" }
+    val save = new Button { text = "Save frames" }
+    val noSave = new Button { text = "Don't save" }
     val panel = ImagePanel(is.head.getWidth, is.head.getHeight)
     val buttons = new BoxPanel(Orientation.Horizontal) {
       contents += start
       contents += stop
+      contents += save
+      contents += noSave
       border = Swing.EmptyBorder(5, 5, 5, 5)
     }
     contents = new BoxPanel(Orientation.Vertical) {
@@ -43,6 +47,8 @@ class SwingImageViewer(var is: Stream[BufferedImage], timerDelay: Int, autoStart
     peer.setDefaultCloseOperation(0)
     listenTo(start)
     listenTo(stop)
+    listenTo(save)
+    listenTo(noSave)
     var frameCounter: Long = 0
     val timer = new javax.swing.Timer(timerDelay, Swing.ActionListener(e => {
       if (!is.isEmpty) {
@@ -57,8 +63,12 @@ class SwingImageViewer(var is: Stream[BufferedImage], timerDelay: Int, autoStart
       case ButtonClicked(b) => {
         if (b.text == "Start")
           timer.start()
-        else
+        else if (b.text == "Stop")
           timer.stop()
+        else if (b.text == "Save frames")
+          saveFrames = true
+        else
+          saveFrames = false
       }
       case WindowClosing(_) => {
         println("Close button clicked. Exiting...")
