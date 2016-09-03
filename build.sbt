@@ -1,6 +1,6 @@
 name := "scala-view"
 organization := "darrenjw"
-version := "0.2"
+version := "0.3-SNAPSHOT"
 
 scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature")
 
