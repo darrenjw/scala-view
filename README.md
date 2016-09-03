@@ -5,7 +5,7 @@ Small Scala library for animating on-screen a Stream of AWT BufferedImages in a 
 
 ## Building and using the package (with sbt)
 
-The binary package is not yet published to sonatype or similar. So, to use, download or clone this repo and do a `sbt publish-local`. This will build the package and store it in your ivy cache. Then add `"darrenjw" %% "scala-view" % "0.1"` to the sbt library dependencies in the project which requires this package.
+The binary package is currently published to my own personal maven repo. To use it, add `"darrenjw" %% "scala-view" % "0.2-SNAPSHOT"` to the sbt library dependencies in the project which requires this package, and also add `"Newcastle mvn repo" at "https://www.staff.ncl.ac.uk/d.j.wilkinson/mvn/"` to the resolvers.
 
 ## Using the package in your code
 
