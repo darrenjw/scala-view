@@ -1,6 +1,6 @@
 name := "scala-view"
 organization := "darrenjw"
-version := "0.1"
+version := "0.2-SNAPSHOT"
 
 scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature")
 
@@ -16,4 +16,7 @@ resolvers ++= Seq(
 )
 
 scalaVersion := "2.11.7"
+
+publishTo := Some(Resolver.sftp("Personal mvn repo", "unix.ncl.ac.uk", "/home/ucs/100/ndjw1/public_html/mvn"))
+
 
