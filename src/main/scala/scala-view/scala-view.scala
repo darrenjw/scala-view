@@ -30,9 +30,12 @@ class SwingImageViewer(var is: Stream[BufferedImage], timerDelay: Int, autoStart
     val start = new Button { text = "Start" }
     val stop = new Button { text = "Stop" }
     val panel = ImagePanel(is.head.getWidth, is.head.getHeight)
+    val buttons = new BoxPanel(Orientation.Horizontal) {
+      contents+=start
+      contents+=stop
+      }
     contents = new BoxPanel(Orientation.Vertical) {
-      contents += start
-      contents += stop
+      contents += buttons
       contents += panel
       border = Swing.EmptyBorder(10, 10, 10, 10)
     }
