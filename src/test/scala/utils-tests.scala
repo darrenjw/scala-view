@@ -36,6 +36,13 @@ class MyTestSuite extends FunSuite {
     assert(s2.toList === List(3, 6, 9))
   }
 
+  test("thin an infinite stream") {
+    val s1 = Stream.iterate(1L)(_ + 1)
+    val s2 = Stream.iterate(10000L)(_ + 10000)
+    val s3 = thinStream(s1, 10000)
+    assert(s2.take(1000).toList === s3.take(1000).toList)
+  }
+
   test("rescale an image") {
     import java.awt.image.BufferedImage
     val im1 = new BufferedImage(100, 200, BufferedImage.TYPE_BYTE_GRAY)
