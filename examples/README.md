@@ -2,7 +2,7 @@
 
 ## A collection of examples illustrating use of the scala-view library
 
-This repo contains a collection of examples illustrating the use of the [scala-view](https://github.com/darrenjw/scala-view) library. You can run these examples by running `sbt` from this directory and typing `run` at the `sbt` prompt. Then select the example you want to run.
+This directory contains a collection of examples illustrating the use of the [scala-view](https://github.com/darrenjw/scala-view) library. You can run these examples by running `sbt` from this directory and typing `run` at the `sbt` prompt. Then select the example you want to run.
 
 Current examples:
 

@@ -13,4 +13,4 @@ The binary package is currently published to my own personal maven repo. To use 
 
 The idea is that you create a `Stream` of `BufferedImage`s for your application and then visualise it by calling `scalaview.SwingImageViewer(sbi)` where `sbi` has type `Stream[BufferedImage]`. Further details can be found in the scaladoc (which can be built with `sbt doc`). Note that it is usually better to use the constructor(s) in the companion object for the `SwingImageViewer` rather than the default class constructor.
 
-Examples of use can be found in the separate repo [scala-view-examples](https://github.com/darrenjw/scala-view-examples).
+Examples of use can be found in the [examples](examples/) subdirectory.
