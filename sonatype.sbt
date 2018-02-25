@@ -21,14 +21,24 @@ scmInfo := Some(
   )
 )
 
-developers := List(
-  Developer(
-    id    = "darrenjw",
-    name  = "Darren J Wilkinson",
-    email = "darrenjwilkinson@btinternet.com",
-    url   = url("https://github.com/darrenjw")
-  )
+pomExtra := (
+  <developers>
+      <developer>
+        <id>darrenjw</id>
+        <name>Darren J Wilkinson</name>
+        <url>https://github.com/darrenjw/</url>
+      </developer>
+   </developers>
 )
+
+//developers := List(
+//  Developer(
+//    id    = "darrenjw",
+//    name  = "Darren J Wilkinson",
+//    email = "darrenjwilkinson@btinternet.com",
+//    url   = url("https://github.com/darrenjw")
+//  )
+//)
 
 publishMavenStyle := true
 
