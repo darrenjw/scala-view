@@ -7,7 +7,7 @@ Small Scala library for animating on-screen a Stream of AWT BufferedImages in a 
 
 This is an sbt project, so building from source should be as simple as `sbt package` (assuming that sbt in installed and in your path).
 
-The binary package is published on the Central repository (AKA Maven Central). To use it, add:
+The binary package is published on the Central repository (AKA Maven Central), and is cross-built for Scala 2.11.x and 2.12.x. To use it, add:
 ```scala
 libraryDependencies += "com.github.darrenjw" %% "scala-view" % "0.4"
 ```
