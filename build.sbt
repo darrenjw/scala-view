@@ -1,5 +1,5 @@
 name := "scala-view"
-organization := "darrenjw"
+organization := "com.github.darrenjw"
 version := "0.4-SNAPSHOT"
 
 scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature")
@@ -18,6 +18,6 @@ scalaVersion := "2.12.4"
 
 crossScalaVersions := Seq("2.11.11","2.12.4")
 
-publishTo := Some(Resolver.sftp("Personal mvn repo", "unix.ncl.ac.uk", "/home/ucs/100/ndjw1/public_html/mvn"))
+//publishTo := Some(Resolver.sftp("Personal mvn repo", "unix.ncl.ac.uk", "/home/ucs/100/ndjw1/public_html/mvn"))
 
 
