@@ -1,3 +1,15 @@
+/*
+ising.scala
+
+Visualising iterations of a Gibbs sampler for sampling an Ising model
+
+Loosely based on the example from:
+
+https://darrenjw.wordpress.com/2018/01/22/comonads-for-scientific-and-statistical-computing-in-scala/
+
+ */
+
+
 import scalafx.scene.image.WritableImage
 import scalafx.scene.paint._
 
@@ -41,3 +53,6 @@ object IsingModel {
   }
 
 }
+
+/* eof */
+
