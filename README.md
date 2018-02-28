@@ -43,7 +43,7 @@ Examples of use can be found in the [examples](examples/) subdirectory.
 
 ## Turning frames into a movie
 
-This is nothing to do with this library, but people keep asking me how to turn a bunch of frames into a movie for incorporating into talk presentations, etc. I'm not an expert at this, but on Ubuntu, I will often use something like:
+This is not really anything to do with this library, but people keep asking me how to turn a bunch of frames into a movie for incorporating into talk presentations, etc. On Ubuntu, I will often use something like:
 ```bash
 avconv -r 10 -i siv-%06d.png movie.mp4
 ```
