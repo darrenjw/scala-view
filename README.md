@@ -1,8 +1,8 @@
 # scala-view
 
-This is a small Scala library for animating a Stream of Images on-screen in a separate window managed by your window manager. It works with both [ScalaFX](http://www.scalafx.org/) `Images` (recommended) and [Scala Swing](https://github.com/scala/scala-swing)/AWT `BufferedImages` (legacy). The stream of images is animated in a Window with some simple controls to start and stop the animation, and to turn on and off the saving of image frames to disk (typically for the purpose of turning the image sequence into a movie). An example of what a window might look like is given below.
+This is a small Scala library for animating a Stream of Images on-screen in a separate window managed by your window manager. It works with both [ScalaFX](http://www.scalafx.org/) `Images` (recommended) and [Scala Swing](https://github.com/scala/scala-swing)/AWT `BufferedImages` (legacy). The stream of images is animated in a window with some simple controls to start and stop the animation, and to turn on and off the saving of image frames to disk (typically for the purpose of turning the image sequence into a movie). An example of what a window might look like is given below.
 
-EXAMPLE IMAGE HERE
+![Example window](ising-window.png)
 
 ## Using the package (with SBT)
 
@@ -40,4 +40,16 @@ The idea is that you create a `Stream` of `BufferedImage`s for your application 
 #### Examples
 
 Examples of use can be found in the [examples](examples/) subdirectory.
+
+## Turning frames into a movie
+
+This is nothing to do with this library, but people keep asking me how to turn a bunch of frames into a movie for incorporating into talk presentations, etc. I'm not an expert at this, but on Ubuntu, I will often use something like:
+```bash
+avconv -r 10 -i siv-%06d.png movie.mp4
+```
+to create a movie at 10 frames per second.
+
+## Copyright
+
+Copyright (C) 2016-2018 Darren J Wilkinson, released under an Apache 2 Open Source license. 
 
