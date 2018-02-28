@@ -8,11 +8,11 @@ This is a small Scala library for animating a Stream of Images on-screen in a se
 
 The binary package is published on the Central repository (AKA Maven Central), and is cross-built for Scala 2.11.x and 2.12.x. To use it with an SBT-based Scala project, add:
 ```scala
-libraryDependencies += "com.github.darrenjw" %% "scala-view" % "0.4"
+libraryDependencies += "com.github.darrenjw" %% "scala-view" % "0.5"
 ```
 to your SBT build for the "official" release. This is recommended for new users. If you need the latest available snaphot, use
 ```scala
-libraryDependencies += "com.github.darrenjw" %% "scala-view" % "0.5-SNAPSHOT"
+libraryDependencies += "com.github.darrenjw" %% "scala-view" % "0.6-SNAPSHOT"
 ```
 and note that this will require a sonatype shapshot resolver
 ```scala
