@@ -7,6 +7,7 @@ This directory contains a collection of examples illustrating the use of the [sc
 Current examples:
 
 * [Ising model](https://en.wikipedia.org/wiki/Ising_model) Gibbs sampling MCMC simulation (parallelised)
+* [Heat equation](https://en.wikipedia.org/wiki/Heat_equation) Numerical solution of the heat equation, or equivalently, Gaussian blurring of a noisy image
 
 These are examples for the new ScalaFX-based API. Examples for the legacy Swing API are in a seperate [examples directory](../examples-swing/).
 
