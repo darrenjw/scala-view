@@ -10,11 +10,11 @@ The binary package is published on the Central repository (AKA Maven Central), a
 ```scala
 libraryDependencies += "com.github.darrenjw" %% "scala-view" % "0.5"
 ```
-to your SBT build for the "official" release. This is recommended for new users. If you need the latest available snaphot, use
+to your SBT build for the "official" release. This is recommended for new users. If you need the latest available snapshot, use
 ```scala
 libraryDependencies += "com.github.darrenjw" %% "scala-view" % "0.6-SNAPSHOT"
 ```
-and note that this will require a sonatype shapshot resolver
+and note that this will require a sonatype snapshot resolver
 ```scala
 resolvers += "Sonatype Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots/"
 ```
@@ -23,7 +23,7 @@ Pre-built ScalaDoc [API Documentation](https://darrenjw.github.io/scala-view/api
 
 ## Building from source
 
-This is an SBT project, so building from source should be as simple as `sbt package` (assuming that sbt in installed and in your path). Scaladoc documentation can be built with `sbt doc`, etc.
+This is an SBT project, so building from source should be as simple as `sbt package` (assuming that sbt in installed and in your path). ScalaDoc documentation can be built with `sbt doc`, etc.
 
 ## Using the package in your code
 

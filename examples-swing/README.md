@@ -15,5 +15,5 @@ Current examples:
 
 Note that you should click on the "Stop" button before clicking on the "close window" button if you want the application to quit, even for finite streams.
 
-These are examples for the legacy Swing-based API. Examples for the ScalaFX API are in a seperate [examples directory](../examples-sfx/).
+These are examples for the legacy Swing-based API. Examples for the ScalaFX API are in a separate [examples directory](../examples-sfx/).
 
