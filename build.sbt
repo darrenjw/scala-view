@@ -5,8 +5,9 @@ version := "0.5-SNAPSHOT"
 scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature")
 
 libraryDependencies  ++= Seq(
-            "org.scalatest" %% "scalatest" % "3.0.3" % "test",
-            "org.scala-lang.modules" %% "scala-swing" % "2.0.2"
+  "org.scalatest" %% "scalatest" % "3.0.3" % "test",
+  "org.scalafx"   %% "scalafx"   % "8.0.102-R11",
+  "org.scala-lang.modules" %% "scala-swing" % "2.0.2"
 )
 
 resolvers ++= Seq(
