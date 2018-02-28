@@ -39,7 +39,7 @@ The idea is that you create a `Stream` of `BufferedImage`s for your application 
 
 #### Examples
 
-Examples of use can be found in the [examples](examples/) subdirectory.
+Examples of use can be found in the [examples-swing](examples-swing/) subdirectory.
 
 ## Turning frames into a movie
 

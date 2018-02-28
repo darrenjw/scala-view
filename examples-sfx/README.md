@@ -8,5 +8,5 @@ Current examples:
 
 * [Ising model](https://en.wikipedia.org/wiki/Ising_model) Gibbs sampling MCMC simulation (parallelised)
 
-These are examples for the new ScalaFX-based API. Examples for the legacy Swing API are in a seperate [examples directory](../examples/).
+These are examples for the new ScalaFX-based API. Examples for the legacy Swing API are in a seperate [examples directory](../examples-swing/).
 
