@@ -12,7 +12,17 @@ import scalafx.scene.control.Button
 import scalafx.scene.image.{ ImageView, Image }
 import scalafx.scene.paint.Color
 
-case class SfxImageViewer(var is: Stream[Image], timerDelay: Int, autoStart: Boolean = false, var saveFrames: Boolean = false) {
+/**
+  * Class having the side-effect of rendering a Stream of ScalaFX Images on-screen. Probably better to use companion object constructor in preference to the default class constructor in client code, not least because it includes useful defaults.
+  *
+  * @constructor Render the stream of images on-screen
+  * @param is Stream of ScalaFX Images (eg. WritableImage) to be animated on-screen
+  * @param timerDelay Delay, in nanoseconds, between frames of the image to be rendered on screen.
+  * @param autoStart Auto-start the animation without requiring a click on the Start button?
+  * @param saveFrames Save the image frames to sequentially numbered PNG files?
+  * @return In principle this returns an object, but in practice it is called purely for the side-effect of on-screen rendering.
+  */
+class SfxImageViewer(var is: Stream[Image], timerDelay: Int, autoStart: Boolean, var saveFrames: Boolean) {
 
   new JFXPanel() // trick to spin up JFX
 
@@ -67,6 +77,34 @@ case class SfxImageViewer(var is: Stream[Image], timerDelay: Int, autoStart: Boo
       }
     }
     mainStage.showAndWait()
+  }
+
+}
+
+object SfxImageViewer {
+
+  /**
+    * Constructor to be used for rendering a Stream of ScalaFX Images on-screen. 
+    *
+    * @constructor Render the stream of images on-screen
+    * @param is Stream of ScalaFX Images (eg. WritableImage) to be animated on-screen
+    * @param timerDelay Delay, in nanoseconds, between frames of the image to be rendered on screen. Use the default for streams to be rendered as soon as each image is computed.
+    * @param autoStart Auto-start the animation without requiring a click on the Start button (default false)?
+    * @param saveFrames Save the image frames to sequentially numbered PNG files (default false)?
+    * @return In principle this returns an object, but in practice it is called purely for the side-effect of on-screen rendering.
+    */
+  def apply(is: Stream[Image], timerDelay: Int = 1000, autoStart: Boolean = false, saveFrames: Boolean = false): SfxImageViewer =
+    new SfxImageViewer(is,timerDelay,autoStart,saveFrames)
+
+  /**
+   * Constructor to be used for rendering a single image
+   *
+   * @constructor Render the provided image on-screen
+   * @param im is the Image to be rendered
+   * @return In principle this returns an object, but in practice it is called purely for the side-effect of on-screen rendering.
+   */
+  def apply(im: Image): SfxImageViewer = {
+    apply(Stream(im), autoStart = true)
   }
 
 }

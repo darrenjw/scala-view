@@ -1,9 +1,9 @@
 /*
-package.scala
+Utils.scala
 
-Utility methods in the package object
+Utility methods for scalaview
 
-Copyright (C) 2016 Darren J Wilkinson
+Copyright (C) 2016-2018 Darren J Wilkinson
 https://github.com/darrenjw
 
  */

@@ -34,9 +34,9 @@ object IsingModel {
     val pim0 = PImage(0, 0, Image(w, h, Vector.fill(w * h)(if (math.random > 0.5) 1 else -1).par))
     def pims = Stream.iterate(pim0)(_.coflatMap(oddKernel(beta)).coflatMap(evenKernel(beta)))
     def sfxis = pims map (pi => I2SFXWI(pi.image))
-    val fis = sfxis.take(100)
-    //scalaview.SfxImageViewer(sfxis, 1, true, false)
-    scalaview.SfxImageViewer(fis, 1, true, false)
+    //val fis = sfxis.take(100)
+    scalaview.SfxImageViewer(sfxis, 1, true, false)
+    //scalaview.SfxImageViewer(fis, 1, true, false)
   }
 
 }

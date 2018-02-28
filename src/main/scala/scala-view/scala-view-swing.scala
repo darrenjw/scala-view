@@ -16,7 +16,7 @@ import scala.util.Random
 import scala.swing.event.{ButtonClicked, WindowClosing}
 
 /**
- * Class having the side-effect of rendering a Stream of BufferedImages in a JFrame on-screen.
+ * Class having the side-effect of rendering a Stream of Swing BufferedImages in a JFrame on-screen.
  * Better to use the constructor(s) in the companion object.
  *
  * @constructor Render the stream of images on-screen
