@@ -50,9 +50,14 @@ case class SfxImageViewer(var is: Stream[Image], timerDelay: Int, autoStart: Boo
         var lastUpdate = 0L
         var frameCounter = 0L
         val timer = AnimationTimer(t => {
-          if (t - lastUpdate > timerDelay) {
+          if ( (!is.isEmpty) && (t - lastUpdate > timerDelay) ) {
             iv.image = is.head
-            if (saveFrames) { javax.imageio.ImageIO.write(SwingFXUtils.fromFXImage(is.head,null), "png", new java.io.File(f"siv-$frameCounter%06d.png")) }
+            if (saveFrames) {
+              javax.imageio.ImageIO.
+                write(SwingFXUtils.
+                  fromFXImage(is.head,null), "png",
+                  new java.io.File(f"siv-$frameCounter%06d.png"))
+            }
             is = is.tail
             frameCounter += 1
             lastUpdate = t
