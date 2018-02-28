@@ -1,6 +1,6 @@
-# scala-view-examples
+# scala-view examples - Swing examples
 
-## A collection of examples illustrating use of the scala-view library
+## A collection of examples illustrating use of the scala-view library - legacy Swing examples
 
 This directory contains a collection of examples illustrating the use of the [scala-view](https://github.com/darrenjw/scala-view) library. You can run these examples by running `sbt` from this directory and typing `run` at the `sbt` prompt. Then select the example you want to run.
 
@@ -15,4 +15,5 @@ Current examples:
 
 Note that you should click on the "Stop" button before clicking on the "close window" button if you want the application to quit, even for finite streams.
 
+These are examples for the legacy Swing-based API. Examples for the ScalaFX API are in a seperate [examples directory](../examples-sfx/).
 
