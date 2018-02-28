@@ -1,4 +1,3 @@
-
 import scalafx.scene.image.WritableImage
 import scalafx.scene.paint._
 
@@ -17,7 +16,7 @@ object IsingModel {
   def evenKernel(beta: Double)(pi: PImage[Int]): Int =
     if ((pi.x + pi.y) % 2 == 0) pi.extract else gibbsKernel(beta)(pi)
 
-  def I2SFXWI(im: Image[Int]): WritableImage = {
+  def toSfxI(im: Image[Int]): WritableImage = {
     val wi = new WritableImage(im.w, im.h)
     val pw = wi.pixelWriter
     (0 until im.w) foreach (i =>
@@ -33,10 +32,12 @@ object IsingModel {
 
     val pim0 = PImage(0, 0, Image(w, h, Vector.fill(w * h)(if (math.random > 0.5) 1 else -1).par))
     def pims = Stream.iterate(pim0)(_.coflatMap(oddKernel(beta)).coflatMap(evenKernel(beta)))
-    def sfxis = pims map (pi => I2SFXWI(pi.image))
+    def sfxis = pims map (im => toSfxI(im.image))
+    //scalaview.SfxImageViewer(sfxis)
+    scalaview.SfxImageViewer(sfxis, autoStart = true)
     //val fis = sfxis.take(100)
-    scalaview.SfxImageViewer(sfxis, 1, true, false)
-    //scalaview.SfxImageViewer(fis, 1, true, false)
+    //scalaview.SfxImageViewer(fis, autoStart = true)
+    //scalaview.SfxImageViewer(sfxis.drop(2).head)
   }
 
 }
