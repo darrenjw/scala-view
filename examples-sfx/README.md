@@ -9,5 +9,7 @@ Current examples:
 * [Ising model](https://en.wikipedia.org/wiki/Ising_model) Gibbs sampling MCMC simulation (parallelised)
 * [Heat equation](https://en.wikipedia.org/wiki/Heat_equation) Numerical solution of the heat equation, or equivalently, Gaussian blurring of a noisy image
 
+The heat equation example is also the subject of the [interactive tutorial](../docs/Tutorial.md).
+
 These are examples for the new ScalaFX-based API. Examples for the legacy Swing API are in a separate [examples directory](../examples-swing/).
 
