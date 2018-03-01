@@ -81,7 +81,7 @@ def toSfxI(im: Image[Double]): WritableImage = {
   }
 ```
 
-We will need an starting image representing the initial condition for the heat equation.
+We will need a starting image representing the initial condition for the heat equation.
 
 ```scala
 val w = 600
