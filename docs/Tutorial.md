@@ -114,7 +114,9 @@ We can turn this into a `Stream[WritableImage]` with
 def sfxis = pims map (im => toSfxI(im.image))
 ```
 
-Finally, we can render it on screen with
+Note that we are essentially finished at this point, but so far everything we have done has been purely functional with no side effects. We haven't even computed our solution to the heat equation. All we have constructed are lazy infinite streams representing the solution of the heat equation.
+
+Finally, we can render our Stream of Images on screen with
 
 ```scala
 scalaview.SfxImageViewer(sfxis,1e7.toInt)
@@ -122,5 +124,5 @@ scalaview.SfxImageViewer(sfxis,1e7.toInt)
 
 which has a delay of 1e7 nanoseconds (10 milliseconds) between frames.
 
-This should pop up a window on your display containing the initial image. Click on the start button to animate the solution of the heat equation.
+This should pop up a window on your display containing the initial image. Click on the start button to animate the solution of the heat equation. See the [API docs](https://darrenjw.github.io/scala-view/api/scalaview/) for [SfxImageViewer](https://darrenjw.github.io/scala-view/api/scalaview/SfxImageViewer.html) for additional options.
 
