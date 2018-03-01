@@ -124,5 +124,5 @@ scalaview.SfxImageViewer(sfxis,1e7.toInt)
 
 which has a delay of 1e7 nanoseconds (10 milliseconds) between frames.
 
-This should pop up a window on your display containing the initial image. Click on the start button to animate the solution of the heat equation. See the [API docs](https://darrenjw.github.io/scala-view/api/scalaview/) for [SfxImageViewer](https://darrenjw.github.io/scala-view/api/scalaview/SfxImageViewer.html) for additional options.
+This should pop up a window on your display containing the initial image. Click on the Start button to animate the solution of the heat equation. See the [API docs](https://darrenjw.github.io/scala-view/api/scalaview/) for [SfxImageViewer](https://darrenjw.github.io/scala-view/api/scalaview/SfxImageViewer.html) for additional options. The [ScalaFX API docs](http://www.scalafx.org/api/8.0/) may also be useful, especially the docs for [Image](http://www.scalafx.org/api/8.0/#scalafx.scene.image.Image) and [WritableImage](http://www.scalafx.org/api/8.0/#scalafx.scene.image.WritableImage).
 
