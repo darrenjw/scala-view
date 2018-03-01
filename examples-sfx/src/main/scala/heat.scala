@@ -31,7 +31,6 @@ object HeatEquation {
   def main(args: Array[String]): Unit = {
     val w = 600
     val h = 500
-    val beta = 0.45
 
     val pim0 = PImage(0, 0, Image(w, h,
       ((0 until w*h).toVector map {i: Int => {
