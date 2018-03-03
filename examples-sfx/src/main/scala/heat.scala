@@ -21,7 +21,7 @@ object HeatEquation {
   def toSfxI(im: Image[Double]): WritableImage = {
     val wi = new WritableImage(im.w, im.h)
     val pw = wi.pixelWriter
-    (0 until im.w) foreach (i =>
+    (0 until im.w).par foreach (i =>
       (0 until im.h) foreach (j =>
         pw.setColor(i, j, Color.gray(im(i,j)))
       ))

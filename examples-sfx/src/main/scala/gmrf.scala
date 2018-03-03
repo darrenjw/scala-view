@@ -11,9 +11,11 @@ import scalafx.scene.paint._
 
 object Gmrf {
 
+  val rng = new scala.util.Random
+
   def gibbsKernel(beta: Double)(pi: PImage[Double]): Double = {
-    val sum = pi.up.extract + pi.down.extract + pi.left.extract + pi.right.extract
-    beta*math.random // TODO: FIX!!!
+    val av = (pi.up.extract + pi.down.extract + pi.left.extract + pi.right.extract)/4.0
+    av + beta*(rng.nextGaussian)
   }
 
   def oddKernel(beta: Double)(pi: PImage[Double]): Double =
@@ -24,9 +26,11 @@ object Gmrf {
   def toSfxI(im: Image[Double]): WritableImage = {
     val wi = new WritableImage(im.w, im.h)
     val pw = wi.pixelWriter
-    (0 until im.w) foreach (i =>
+    val mx = im.reduce(math.max)
+    val mn = im.reduce(math.min)
+    (0 until im.w).par foreach (i =>
       (0 until im.h) foreach (j =>
-        pw.setColor(i, j, Color.gray(im(i, j)))
+        pw.setColor(i, j, Color.gray((im(i, j)-mn)/(mx-mn)))
       ))
     wi
   }
@@ -34,7 +38,7 @@ object Gmrf {
   def main(args: Array[String]): Unit = {
     val w = 600
     val h = 500
-    val beta = 0.45
+    val beta = 2.0
 
     val pim0 = PImage(0, 0, Image(w, h, Vector.fill(w * h)(math.random).par))
     def pims = Stream.iterate(pim0)(_.coflatMap(oddKernel(beta)).coflatMap(evenKernel(beta)))

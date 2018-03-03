@@ -31,7 +31,7 @@ object IsingModel {
   def toSfxI(im: Image[Int]): WritableImage = {
     val wi = new WritableImage(im.w, im.h)
     val pw = wi.pixelWriter
-    (0 until im.w) foreach (i =>
+    (0 until im.w).par foreach (i =>
       (0 until im.h) foreach (j =>
         pw.setColor(i, j, Color.gray(if (im(i, j) == 1) 1 else 0))))
     wi
