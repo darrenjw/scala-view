@@ -6,8 +6,11 @@ This directory contains a collection of examples illustrating the use of the [sc
 
 Current examples:
 
-* [Ising model](https://en.wikipedia.org/wiki/Ising_model) Gibbs sampling MCMC simulation (parallelised)
 * [Heat equation](https://en.wikipedia.org/wiki/Heat_equation) Numerical solution of the heat equation, or equivalently, Gaussian blurring of a noisy image
+* [Ising model](https://en.wikipedia.org/wiki/Ising_model) Gibbs sampling MCMC simulation
+* [GMRF](https://en.wikipedia.org/wiki/Markov_random_field) Gibbs sampling MCMC simulation for a Gaussian Markov random field
+
+All of the algorithms run in parallel on all available cores.
 
 The heat equation example is also the subject of the [interactive tutorial](../docs/Tutorial.md).
 
