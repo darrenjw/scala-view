@@ -1,7 +1,7 @@
 /*
 gmrf.scala
 
-Visualising iterations of a Gibbs sampler for sampling a GMRF
+Visualising iterations of a Gibbs sampler for sampling a Gaussian Markov random field (GMRF)
 
  */
 
@@ -38,7 +38,7 @@ object Gmrf {
   def main(args: Array[String]): Unit = {
     val w = 600
     val h = 500
-    val beta = 2.0
+    val beta = 0.1
 
     val pim0 = PImage(0, 0, Image(w, h, Vector.fill(w * h)(math.random).par))
     def pims = Stream.iterate(pim0)(_.coflatMap(oddKernel(beta)).coflatMap(evenKernel(beta)))
