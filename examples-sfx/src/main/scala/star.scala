@@ -1,9 +1,10 @@
 /*
 star.scala
 
-Time-evolution of a STAR(1) model with censoring/thresholding, as a prior for rainfall
+Time-evolution of a STAR(1) model with censoring/thresholding
+Potentially useful as a spatio-temporal prior distribution for rainfall
 
- */
+*/
 
 
 import scalafx.scene.image.WritableImage
@@ -15,7 +16,7 @@ object Star {
 
   def kernel(alpha: Double, beta: Double, sig: Double, wind: Double,direction: Double)(pi: PImage[Double]): Double = {
     val av = (1.0-4.0*beta)*pi.extract + beta*(pi.up.extract + pi.down.extract + pi.left.extract + pi.right.extract)
-    val drift = wind*( math.cos(direction)*(pi.left.extract-pi.right.extract) +  math.sin(direction)*(pi.up.extract-pi.down.extract))
+    val drift = wind*( math.cos(direction)*(pi.right.extract-pi.left.extract) +  math.sin(direction)*(pi.up.extract-pi.down.extract))
     alpha*av + drift + sig*rng.nextGaussian
   }
 
@@ -24,7 +25,7 @@ object Star {
     val pw = wi.pixelWriter
     val mx = im.reduce(math.max)
     val mn = im.reduce(math.min)
-    println(mn,mx)
+    //println(mn,mx)
     (0 until im.w).par foreach (i =>
       (0 until im.h) foreach (j => {
         val h = math.max(0.0, im(i,j) - thresh)
@@ -36,14 +37,14 @@ object Star {
   }
 
   def main(args: Array[String]): Unit = {
-    val w = 600
-    val h = 500
-    val alpha = 0.999 // auto-regressive parameter - should be < 1
-    val beta = 0.1 // diffusion rate - should be <= 0.2
-    val sig = 0.01 // Noise - quite small
-    val wind = 0.1 // Magnitude of wind/drift (should be < beta)
-    val direction = 0.0*math.Pi // Wind direction, in radians, anti-clock from Easterly
-    val thresh = 0.005 // threshold for censoring/truncation
+    val w = 1000
+    val h = 800
+    val alpha = 0.99999 // auto-regressive parameter - should be < 1
+    val beta = 0.2 // diffusion rate - should be <= 0.2
+    val sig = 0.001 // Noise - quite small
+    val wind = 0.15 // Magnitude of wind/drift (should be < beta)
+    val direction = 0.75*math.Pi // Wind direction, in radians, anti-clock from Easterly
+    val thresh = 0.01 // threshold for censoring/truncation
     val pim0 = PImage(0, 0, Image(w, h, Vector.fill(w * h)(rng.nextGaussian).par))
     def pims = Stream.iterate(pim0)(_.coflatMap(kernel(alpha,beta,sig,wind,direction)))
     def sfxis = pims map (im => toSfxI(thresh, im.image))
