@@ -53,13 +53,22 @@ object Utils {
   }
 
   import scalafx.scene.image.{ ImageView, Image }
+  import scalafx.embed.swing.SwingFXUtils
 
+  /**
+    *  Resize a SFX Image. Intended for blowing up small images to make them a sensible size for
+    *  viewing on a modern high-res display
+    * 
+    *  @param img The image to be re-sized
+    *  @param newW The desired width of the new image
+    *  @param newH The desired height of the new image
+    * 
+    *  @return The resized Image
+    */
   def iResize(img: Image, newW: Int, newH: Int): Image = {
-    val fiv = new ImageView(img)
-    fiv.setFitWidth(newW)
-    fiv.setFitHeight(newH)
-    val newImg: Image = new Image(fiv.getImage)
-    newImg
+    val bi = SwingFXUtils.fromFXImage(img, null)
+    val bir = biResize(bi, newW, newH)
+    SwingFXUtils.toFXImage(bir, null)
   }
 
 
