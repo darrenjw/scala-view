@@ -52,6 +52,17 @@ object Utils {
     dimg
   }
 
+  import scalafx.scene.image.{ ImageView, Image }
+
+  def iResize(img: Image, newW: Int, newH: Int): Image = {
+    val fiv = new ImageView(img)
+    fiv.setFitWidth(newW)
+    fiv.setFitHeight(newH)
+    val newImg: Image = new Image(fiv.getImage)
+    newImg
+  }
+
+
 }
 
 /* eof */
