@@ -37,8 +37,8 @@ object Star {
   }
 
   def main(args: Array[String]): Unit = {
-    val w = 800
-    val h = 600
+    val w = 500
+    val h = 400
     val alpha = 0.99999 // auto-regressive parameter - should be < 1
     val beta = 0.2 // diffusion rate - should be <= 0.2
     val sig = 0.001 // Noise - quite small
@@ -49,7 +49,7 @@ object Star {
     def pims = Stream.iterate(pim0)(_.coflatMap(kernel(alpha,beta,sig,wind,direction)))
     def sfxis = pims.
       map(im => toSfxI(thresh, im.image)).
-      map(im => scalaview.Utils.iResize(im,1600,1200))
+      map(im => scalaview.Utils.iResize(im,1500,1200))
     scalaview.SfxImageViewer(sfxis, autoStart = true)
   }
 
