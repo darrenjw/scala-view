@@ -25,13 +25,35 @@ object Sphere {
       Vertex(x/l, y/l, z/l)
     }
 
-    def rotate(th: Double) = Vertex(x*cos(th) - z*sin(th), y, x*sin(th) + z*cos(th))
+    def rotate(th: Double) = Vertex(x*cos(th) - z*sin(th), y,
+      x*sin(th) + z*cos(th))
+
+    def midpoint(v: Vertex): Vertex = {
+      val mx = 0.5*(x+v.x)
+      val my = 0.5*(y+v.y)
+      val mz = 0.5*(z+v.z)
+      Vertex(mx,my,mz)
+    }
 
   }
 
   case class Triangle(v1: Vertex, v2: Vertex, v3: Vertex) {
 
     def rotate(th: Double) = Triangle(v1.rotate(th),v2.rotate(th),v3.rotate(th))
+
+    def normalise: Triangle = Triangle(v1.normalise,v2.normalise,v3.normalise)
+
+    def subdivide: List[Triangle] = {
+      val v12 = v1.midpoint(v2)
+      val v23 = v2.midpoint(v3)
+      val v13 = v1.midpoint(v3)
+      List(
+        Triangle(v1,v12,v13),
+        Triangle(v12,v23,v13),
+        Triangle(v13,v23,v3),
+        Triangle(v12,v2,v23)
+      )
+    }
 
   }
 
@@ -68,6 +90,9 @@ object Sphere {
     Triangle(ivn(8),ivn(10),ivn(5)),
     Triangle(ivn(9),ivn(11),ivn(7))
   )
+
+
+
 
 
   def vl2i(vl: Seq[Vertex],s: Int): WritableImage = {
@@ -113,7 +138,10 @@ object Sphere {
     def ivsi = ivs map (vl2i(_,1000))
     //scalaview.SfxImageViewer(ivsi,100000000)
 
-    def ifs = Stream.iterate(ifac)(fl => fl map (_.rotate(0.01)))
+    val sf1 = ifac flatMap (_.subdivide) map (_.normalise)
+    val sf2 = sf1 flatMap (_.subdivide) map (_.normalise)
+    val sf3 = sf2 flatMap (_.subdivide) map (_.normalise)
+    def ifs = Stream.iterate(sf3)(fl => fl map (_.rotate(0.01)))
     def ifsi = ifs map (tl2i(_,1000))
     scalaview.SfxImageViewer(ifsi,10000000)
 
