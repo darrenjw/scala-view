@@ -8,10 +8,12 @@ sphere.scala
 
 import scalafx.scene.image.WritableImage
 import scalafx.scene.canvas.Canvas
-import scalafx.scene.paint._
+//import scalafx.scene.paint._
 import javafx.embed.swing.{JFXPanel,SwingFXUtils}
 import java.awt.image.BufferedImage
-import java.awt.Graphics2D
+import java.awt.{Graphics2D,Color}
+import scala.collection.GenSeq
+import scala.collection.parallel.immutable.ParVector
 
 object Sphere {
 
@@ -43,6 +45,13 @@ object Sphere {
 
     def normalise: Triangle = Triangle(v1.normalise,v2.normalise,v3.normalise)
 
+    def centroid: Vertex = {
+      val cx = (v1.x+v2.x+v3.x)/3.0
+      val cy = (v1.y+v2.y+v3.y)/3.0
+      val cz = (v1.z+v2.z+v3.z)/3.0
+      Vertex(cx,cy,cz)
+    }
+
     def subdivide: List[Triangle] = {
       val v12 = v1.midpoint(v2)
       val v23 = v2.midpoint(v3)
@@ -68,7 +77,7 @@ object Sphere {
   val ivn = iv map (_.normalise)
 
   // faces of an icosahedron
-  val ifac = List(
+  val ifac = Vector(
     Triangle(ivn(0),ivn(2),ivn(8)), // triangles from 0
     Triangle(ivn(0),ivn(8),ivn(4)),
     Triangle(ivn(0),ivn(4),ivn(6)),
@@ -89,13 +98,13 @@ object Sphere {
     Triangle(ivn(6),ivn(1),ivn(11)),
     Triangle(ivn(8),ivn(10),ivn(5)),
     Triangle(ivn(9),ivn(11),ivn(7))
-  )
+  ).par
 
 
 
 
 
-  def vl2i(vl: Seq[Vertex],s: Int): WritableImage = {
+  def vl2i(vl: GenSeq[Vertex],s: Int): WritableImage = {
     val bi = new BufferedImage(s,s,BufferedImage.TYPE_INT_ARGB)
     val g = bi.createGraphics()
     def sc(x: Double): Int = (0.5*s*(x + 1.0)).toInt
@@ -104,16 +113,20 @@ object Sphere {
     new WritableImage(SwingFXUtils.toFXImage(bi,null))
   }
 
-  def tl2i(tl: Seq[Triangle],s: Int): WritableImage = {
+  def tl2i(tl: ParVector[Triangle],s: Int): WritableImage = {
     val bi = new BufferedImage(s,s,BufferedImage.TYPE_INT_ARGB)
     val g = bi.createGraphics()
     def sc(x: Double): Int = (0.5*s*(x + 1.0)).toInt
     g.clearRect(0,0,s,s)
-    tl map (t => {
+    val sl = tl.toVector.sortBy(_.centroid.z)
+    sl map (t => {
       val xs = Array(t.v1.x, t.v2.x, t.v3.x)
       val ys = Array(t.v1.y, t.v2.y, t.v3.y)
       val sxs = xs map sc
       val sys = ys map sc
+      g.setColor(new Color(100,100,100,200))
+      g.fillPolygon(sxs,sys,3)
+      g.setColor(new Color(255,255,255,255))
       g.drawPolygon(sxs,sys,3)
     })
     new WritableImage(SwingFXUtils.toFXImage(bi,null))
@@ -141,9 +154,9 @@ object Sphere {
     val sf1 = ifac flatMap (_.subdivide) map (_.normalise)
     val sf2 = sf1 flatMap (_.subdivide) map (_.normalise)
     val sf3 = sf2 flatMap (_.subdivide) map (_.normalise)
-    def ifs = Stream.iterate(sf3)(fl => fl map (_.rotate(0.01)))
+    def ifs = Stream.iterate(sf3)(fl => fl map (_.rotate(0.02)))
     def ifsi = ifs map (tl2i(_,1000))
-    scalaview.SfxImageViewer(ifsi,10000000)
+    scalaview.SfxImageViewer(ifsi,10000)
 
     println("bye")
   }
