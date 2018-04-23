@@ -47,16 +47,26 @@ object Sphere {
 
   // faces of an icosahedron
   val ifac = List(
-    Triangle(ivn(0),ivn(2),ivn(8)),
+    Triangle(ivn(0),ivn(2),ivn(8)), // triangles from 0
     Triangle(ivn(0),ivn(8),ivn(4)),
     Triangle(ivn(0),ivn(4),ivn(6)),
     Triangle(ivn(0),ivn(6),ivn(9)),
     Triangle(ivn(0),ivn(9),ivn(2)),
-    Triangle(ivn(3),ivn(1),ivn(11)),
+    Triangle(ivn(3),ivn(1),ivn(11)), // triangles from 3
     Triangle(ivn(3),ivn(11),ivn(7)),
     Triangle(ivn(3),ivn(7),ivn(5)),
     Triangle(ivn(3),ivn(5),ivn(10)),
-    Triangle(ivn(3),ivn(10),ivn(1)) // and the rest!
+    Triangle(ivn(3),ivn(10),ivn(1)),
+    Triangle(ivn(1),ivn(4),ivn(6)), // connecting triangles from 3 layer
+    Triangle(ivn(5),ivn(2),ivn(8)),
+    Triangle(ivn(7),ivn(2),ivn(9)),
+    Triangle(ivn(10),ivn(8),ivn(4)),
+    Triangle(ivn(11),ivn(9),ivn(6)),
+    Triangle(ivn(2),ivn(5),ivn(7)), // connecting triangles from 0 layer
+    Triangle(ivn(4),ivn(1),ivn(10)),
+    Triangle(ivn(6),ivn(1),ivn(11)),
+    Triangle(ivn(8),ivn(10),ivn(5)),
+    Triangle(ivn(9),ivn(11),ivn(7))
   )
 
 
