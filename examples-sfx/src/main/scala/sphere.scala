@@ -1,14 +1,12 @@
 /*
 sphere.scala
 
- *** NOT FINISHED WORK IN PROGRESS!!! ***
+Mesh a sphere rotate
 
  */
 
-
 import scalafx.scene.image.WritableImage
 import scalafx.scene.canvas.Canvas
-//import scalafx.scene.paint._
 import javafx.embed.swing.{JFXPanel,SwingFXUtils}
 import java.awt.image.BufferedImage
 import java.awt.{Graphics2D,Color}
@@ -52,11 +50,11 @@ object Sphere {
       Vertex(cx,cy,cz)
     }
 
-    def subdivide: List[Triangle] = {
+    def subdivide: Vector[Triangle] = {
       val v12 = v1.midpoint(v2)
       val v23 = v2.midpoint(v3)
       val v13 = v1.midpoint(v3)
-      List(
+      Vector(
         Triangle(v1,v12,v13),
         Triangle(v12,v23,v13),
         Triangle(v13,v23,v3),
@@ -101,10 +99,8 @@ object Sphere {
   ).par
 
 
-
-
-
-  def vl2i(vl: GenSeq[Vertex],s: Int): WritableImage = {
+  // Vertex list to image
+  def vl2i(vl: GenSeq[Vertex], s: Int): WritableImage = {
     val bi = new BufferedImage(s,s,BufferedImage.TYPE_INT_ARGB)
     val g = bi.createGraphics()
     def sc(x: Double): Int = (0.5*s*(x + 1.0)).toInt
@@ -113,7 +109,8 @@ object Sphere {
     new WritableImage(SwingFXUtils.toFXImage(bi,null))
   }
 
-  def tl2i(tl: ParVector[Triangle],s: Int): WritableImage = {
+  // Triangle list to image
+  def tl2i(tl: ParVector[Triangle], s: Int): WritableImage = {
     val bi = new BufferedImage(s,s,BufferedImage.TYPE_INT_ARGB)
     val g = bi.createGraphics()
     def sc(x: Double): Int = (0.5*s*(x + 1.0)).toInt
@@ -134,31 +131,12 @@ object Sphere {
 
 
   def main(args: Array[String]): Unit = {
-    new JFXPanel() // Initialise FX thread
-    println("hi")
-    println(iv)
-    println(ivn)
-
-    (0 until 12).foreach(i => {
-      (i+1 until 12).foreach(j => {
-        val d2 = (iv(i).x-iv(j).x)*(iv(i).x-iv(j).x) + (iv(i).y-iv(j).y)*(iv(i).y-iv(j).y) + (iv(i).z-iv(j).z)*(iv(i).z-iv(j).z) 
-        if (d2<5) print(s"($i,$j,$d2) ")
-      })
-      println()
-    })
-
-    def ivs = Stream.iterate(ivn)(vl => vl map (_.rotate(0.01)))
-    def ivsi = ivs map (vl2i(_,1000))
-    //scalaview.SfxImageViewer(ivsi,100000000)
-
     val sf1 = ifac flatMap (_.subdivide) map (_.normalise)
     val sf2 = sf1 flatMap (_.subdivide) map (_.normalise)
     val sf3 = sf2 flatMap (_.subdivide) map (_.normalise)
     def ifs = Stream.iterate(sf3)(fl => fl map (_.rotate(0.02)))
-    def ifsi = ifs map (tl2i(_,1000))
-    scalaview.SfxImageViewer(ifsi,10000)
-
-    println("bye")
+    def ifsi = ifs map (tl2i(_, 1000))
+    scalaview.SfxImageViewer(ifsi, autoStart = true)
   }
 
 }
