@@ -9,6 +9,7 @@ Current examples:
 * [Heat equation](https://en.wikipedia.org/wiki/Heat_equation): Numerical solution of the heat equation, or equivalently, Gaussian blurring of a noisy image
 * [Ising model](https://en.wikipedia.org/wiki/Ising_model): Gibbs sampling MCMC simulation
 * [GMRF](https://en.wikipedia.org/wiki/Markov_random_field): Gibbs sampling MCMC simulation for a Gaussian Markov random field
+* [Sphere](https://en.wikipedia.org/wiki/Sphere): Rotating triangularly meshed sphere
 * STAR(1): Simulation of a space-time auto-regressive model of order 1, with tobit-style thresholding. eg. for a cloud/rainfall prior
 
 All of the algorithms run in parallel on all available cores.
