@@ -30,8 +30,8 @@ class SfxImageViewer(var is: Stream[Image], timerDelay: Int, autoStart: Boolean,
     val mainStage = new Stage {
       title = "ScalaFX Image Viewer"
       scene = new Scene {
-        //fill = Color.rgb(0, 0, 0)
-        fill = Color.rgb(255, 255, 255)
+        fill = Color.rgb(0, 0, 0)
+        //fill = Color.rgb(255, 255, 255)
         val iv = new ImageView(is.head)
         val buttons = new HBox {
           padding = Insets(10,10,10,10)
