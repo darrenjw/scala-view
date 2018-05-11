@@ -114,7 +114,6 @@ object SwingImageViewer {
 case class ImagePanel(var bi: BufferedImage) extends Panel {
   override def paintComponent(g: Graphics2D) = {
     g.setColor(Color.white)
-    g.clearRect(0, 0, bi.getWidth, bi.getHeight)
     g.fillRect(0, 0, bi.getWidth, bi.getHeight)
     g.drawImage(bi, 0, 0, null)
   }

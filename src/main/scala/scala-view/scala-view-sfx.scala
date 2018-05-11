@@ -11,6 +11,8 @@ import scalafx.scene.layout.{ HBox, VBox }
 import scalafx.scene.control.Button
 import scalafx.scene.image.{ ImageView, Image }
 import scalafx.scene.paint.Color
+import java.awt.image.BufferedImage
+import scalafx.embed.swing.{SwingFXUtils => ScalaFXUtils}
 
 /**
   * Class having the side-effect of rendering a Stream of ScalaFX Images on-screen. Probably better to use companion object constructor in preference to the default class constructor in client code, not least because it includes useful defaults.
@@ -106,6 +108,30 @@ object SfxImageViewer {
    */
   def apply(im: Image): SfxImageViewer = {
     apply(Stream(im), autoStart = true)
+  }
+
+  /**
+    * Constructor to be used for rendering a Stream of Buffered Images on-screen. 
+    *
+    * @constructor Render the stream of images on-screen
+    * @param is Stream of BufferedImages to be animated on-screen
+    * @param timerDelay Delay, in nanoseconds, between frames of the image to be rendered on screen. Use the default for streams to be rendered as soon as each image is computed.
+    * @param autoStart Auto-start the animation without requiring a click on the Start button (default false)?
+    * @param saveFrames Save the image frames to sequentially numbered PNG files (default false)?
+    * @return In principle this returns an object, but in practice it is called purely for the side-effect of on-screen rendering.
+    */
+  def bi(is: Stream[BufferedImage], timerDelay: Int = 1000, autoStart: Boolean = false, saveFrames: Boolean = false): SfxImageViewer =
+    SfxImageViewer(is map (ScalaFXUtils.toFXImage(_,null)),timerDelay,autoStart,saveFrames)
+
+  /**
+   * Constructor to be used for rendering a single image
+   *
+   * @constructor Render the provided image on-screen
+   * @param im is the BufferedImage to be rendered
+   * @return In principle this returns an object, but in practice it is called purely for the side-effect of on-screen rendering.
+   */
+  def apply(im: BufferedImage): SfxImageViewer = {
+    apply(Stream(ScalaFXUtils.toFXImage(im,null)), autoStart = true)
   }
 
 }

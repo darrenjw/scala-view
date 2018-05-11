@@ -43,8 +43,9 @@ object Utils {
     * 
     *  @return The resized BufferedImage
     */
-  def biResize(img: BufferedImage, newW: Int, newH: Int): BufferedImage = {
-    val tmp = img.getScaledInstance(newW, newH, java.awt.Image.SCALE_REPLICATE);
+  def biResize(img: BufferedImage, newW: Int, newH: Int,
+    hint: Int = java.awt.Image.SCALE_REPLICATE): BufferedImage = {
+    val tmp = img.getScaledInstance(newW, newH, hint);
     val dimg = new BufferedImage(newW, newH, BufferedImage.TYPE_INT_RGB);
     val g2d = dimg.createGraphics();
     g2d.setColor(java.awt.Color.white)
@@ -54,7 +55,7 @@ object Utils {
     dimg
   }
 
-  import scalafx.scene.image.{ ImageView, Image }
+  import scalafx.scene.image.Image
   import scalafx.embed.swing.SwingFXUtils
 
   /**
