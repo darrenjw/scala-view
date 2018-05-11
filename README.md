@@ -29,7 +29,7 @@ This is an SBT project, so building from source should be as simple as `sbt pack
 
 ### ScalaFX API (recommended)
 
-The idea is that you create a `Stream` of `Image`s (an instance of `scalafx.scene.image.Image`, such as a `WritableImage`) for your application and then visualise it by calling `scalaview.SfxImageViewer(sbi)` where `sbi` has type `Stream[Image]`. This allows construction of the image stream in a pure functional way. Further details can be found in the [ScalaDoc](https://darrenjw.github.io/scala-view/api/scalaview/) (which can be built with `sbt doc`). Note that it is usually better to use the constructor(s) in the companion object for the `SwingImageViewer` rather than the default class constructor.
+The idea is that you create a `Stream` of `Image`s (an instance of `scalafx.scene.image.Image`, such as a `WritableImage`) for your application and then visualise it by calling `scalaview.SfxImageViewer(sbi)` where `sbi` has type `Stream[Image]`. This allows construction of the image stream in a pure functional way. Further details can be found in the [ScalaDoc](https://darrenjw.github.io/scala-view/api/scalaview/) (which can be built with `sbt doc`). Note that it is usually better to use the constructor(s) in the companion object for the `SfxImageViewer` rather than the default class constructor.
 
 #### Examples
 
