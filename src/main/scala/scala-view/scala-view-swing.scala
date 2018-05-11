@@ -113,13 +113,16 @@ object SwingImageViewer {
 
 case class ImagePanel(var bi: BufferedImage) extends Panel {
   override def paintComponent(g: Graphics2D) = {
+    g.setColor(Color.white)
+    g.clearRect(0, 0, bi.getWidth, bi.getHeight)
+    g.fillRect(0, 0, bi.getWidth, bi.getHeight)
     g.drawImage(bi, 0, 0, null)
   }
 }
 
 object ImagePanel {
   def apply(x: Int, y: Int) = {
-    val bi = new BufferedImage(x, y, BufferedImage.TYPE_BYTE_BINARY)
+    val bi = new BufferedImage(x, y, BufferedImage.TYPE_INT_RGB)
     val ip = new ImagePanel(bi)
     ip.preferredSize = new Dimension(x, y)
     ip
